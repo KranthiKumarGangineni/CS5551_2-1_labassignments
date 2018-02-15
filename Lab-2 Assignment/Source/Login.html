@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+
+    <!-- Below condition is added to maintain width and initial scale is for setting Zoom version -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="google-signin-client_id" content="184610063786-sfu3shikh73535os31c19jit50aaljq0.apps.googleusercontent.com">
+
+    <!-- Bootstrap Css Import -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Jquery Import for any of the function calls -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap JS Import -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Importing Angular Js -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+    <!-- Importing Required Script -->
+    <script src="script.js"></script>
+
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+
+</head>
+
+<style>
+
+    .g-signin2{
+        margin-left: 195px;
+        margin-top: 20px;
+    }
+
+</style>
+
+<script>
+
+    // Saving Regsiter Details in
+    function saveLogin(){
+        // Getting Email,Password from Registration
+        var emailId = $("#loginEmail").val();
+        var password = $("#loginPassword").val();
+        // Hiding all errors
+        $("#emailError").hide();
+        $("#passwordError").hide();
+        $("#invalidLoginError").hide();
+        $("#regSuccesful").hide();
+        $("#wrongEmailRegExpError").hide();
+
+        var isErrorInRegistration = false;
+        if(emailId == null || $.trim(emailId) == '') {
+            isErrorInRegistration = true;
+            $("#emailError").show();
+        }else {
+            var atposition = emailId.indexOf("@");
+            var dotposition = emailId.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition+2 || dotposition+2 >= emailId.length) {
+                isErrorInRegistration = true;
+                $("#wrongEmailRegExpError").show();
+            }
+        }
+        if(password == null || $.trim(password) == '') {
+            isErrorInRegistration = true;
+            $("#passwordError").show();
+        }
+        if(isErrorInRegistration) {
+            // Stopping next flow
+            return false;
+        }else{
+            $("#regSuccesful").show();
+            // Setting Password to Empty
+            $('#loginPassword').val('');
+        }
+
+        localStorage.setItem("emailId",emailId);
+        localStorage.setItem("password",password);
+    }
+
+    // Verifying the LocalStorage Data
+    function verifyLogin() {
+        // Hiding all errors
+        $("#emailError").hide();
+        $("#passwordError").hide();
+        $("#invalidLoginError").hide();
+        $("#regSuccesful").hide();
+        $("#wrongEmailRegExpError").hide();
+
+        // Getting Email,Password from Login
+        var emailId = $("#loginEmail").val();
+        var password = $("#loginPassword").val();
+
+        var isErrorInLogin = false;
+
+        if(emailId == null || $.trim(emailId) == '') {
+            isErrorInLogin = true;
+            $("#emailError").show();
+        }
+        if(password == null || $.trim(password) == '') {
+            isErrorInLogin = true;
+            $("#passwordError").show();
+        }
+
+        if(isErrorInLogin){
+            // Stop flow
+            return false;
+        }
+
+        // Checking If registered Details and Input login details are matching
+        if(!(localStorage.getItem("emailId") != null
+            && localStorage.getItem("emailId") == emailId
+            && localStorage.getItem("password") != null
+            && localStorage.getItem("password") == password)){
+            $("#invalidLoginError").show();
+            return false;
+        }
+
+        window.location.href = "Kranthi.html";
+    }
+
+</script>
+
+<body>
+
+<div class="container">
+    <h2>Login/Registration Page</h2>
+   <!-- <form class="form-horizontal" id="formSubmit"> -->
+
+    <p id="emailError" style="display: none;color: red">Email Id cannot be empty</p>
+    <p id="wrongEmailRegExpError" style="display: none;color: red" >Please give a valid Email ( Example: kranthi@gmail.com )</p>
+    <p id="passwordError" style="display: none;color: red">Password cannot be empty</p>
+    <p id="invalidLoginError" style="display: none;color: red" >Invalid Login Credentials, Please register if you haven't yet !!!</p>
+    <p id="regSuccesful" style="display: none;color: brown">Registration is succesful! Now you can Login to check out some interesting details !!</p>
+
+
+    <div id="loginDiv" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="loginEmail">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="loginEmail" placeholder="Enter email address" name="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="loginPassword">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" name="pwd">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" onclick="return verifyLogin();">Login</button>
+                <button type="submit" class="btn btn-info" onclick="return saveLogin();">Registration</button>
+            </div>
+        </div>
+        <div class="g-signin2" data-onSuccess = "onSignIn"></div>
+    </div>
+
+</div>
+
+</body>
+</html>
