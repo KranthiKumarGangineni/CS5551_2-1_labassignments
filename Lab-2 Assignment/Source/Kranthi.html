@@ -101,7 +101,7 @@
                 $("#apiEmptyError").hide();
 
                 $scope.faceDetectionArray = [];
-                $http.post('https://api-us.faceplusplus.com/facepp/v3/detect?api_key=K924MXKS7UDNHWdEmzuKiUKjJOvHQk1F&api_secret=mt3aCMjbw7jjuBm_AiUuQTn6fKxUrXs3&image_url='+imageUrl).success(function(data) {
+                $http.post('https://api-us.faceplusplus.com/facepp/v3/detect?api_key=K924MXKS7UDNHWdEmzuKiUKjJOvHQk1F&api_secret=mt3aCMjbw7jjuBm_AiUuQTn6fKxUrXs3&return_attributes=gender,age,ethnicity&image_url='+imageUrl).success(function(data) {
 
                     $scope.faceDetectionArray = data.faces;
                     console.log($scope.faceDetectionArray);
