@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ase.com.lab3.HomeActivity"
+    android:background="@drawable/homeactivitybg">
+
+    <Button
+        android:id="@+id/logout"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
+        android:onClick="logout"
+        android:text="Logout" />
+
+    <TextView
+        android:id="@+id/homeActivityGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/logout"
+        android:layout_marginStart="13dp"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/apiInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/homeActivityGreeting"
+        android:layout_marginTop="31dp"
+        android:gravity="center"
+        android:text="So, now for this you have to take a picture by clicking below button and using that captured image we will use Watson Visual Recognition API to get you some interesting Info"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/takepicture"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Take a Picture"
+        android:textColor="@android:color/holo_green_light"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:onClick="takePicture"/>
+
+    <TextView
+        android:id="@+id/visualoutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/visualrecognitiontext"
+        android:layout_below="@+id/visualrecognitiontext"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/inputborder" />
+
+    <ImageView
+        android:id="@+id/imagepreview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_above="@+id/takepicture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp" />
+
+    <TextView
+        android:id="@+id/visualrecognitiontext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/homeActivityGreeting"
+        android:layout_below="@+id/apiInfo"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
