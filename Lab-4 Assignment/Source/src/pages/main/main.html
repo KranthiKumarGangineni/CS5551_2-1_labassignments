@@ -1,0 +1,48 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>MainPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color: #51CFB1">
+  <br/>
+  <button ion-button (click)="logout()">Logout</button>
+  <button ion-button (click)="getPicture()" class="submit-btn">Take Picture</button>
+  <div *ngIf="base64Image">
+    <br/>
+    <strong align="center">Picture Taken</strong>
+  <img [src]="base64Image" />
+    <button ion-button (click)="getFaceAnalysis(base64Image)" class="submit-btn">Get Face Analysis</button>
+  </div>
+  <div *ngIf="imagesArray">
+    <strong align="center">Face Detection Details</strong>
+    <ion-list *ngFor="let image of imagesArray">
+      <div *ngFor="let face of image.faces">
+        Age : {{face.attributes.age}}
+        <div *ngIf=" face.attributes.gender.type == 'M'" >Gender : Male</div>
+        <div *ngIf=" face.attributes.gender.type == 'F'" >Gender : Female</div>
+        <br/>
+        <label>Text to Speech</label>
+        <audio controls>
+          <source src="http://translate.google.com/translate_tts?tl=en&q=Uploaded Image persons is a {{face.attributes.gender.type}} & age is {{face.attributes.age}}&client=tw-ob" type="audio/mp4">
+        </audio>
+      </div>
+    </ion-list>
+  </div>
+  <div *ngIf="errorArray">
+    Error :
+    <ion-list *ngFor="let error of errorArray">
+      {{error.Message}}
+    </ion-list>
+  </div>
+</ion-content>

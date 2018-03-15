@@ -1,0 +1,90 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Register UI</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<style>
+
+
+  .register-content {
+    background: #56CA96;
+  }
+
+  .register-box {
+    background: #399F8B;
+    padding: 20px 20px 0px 20px;
+    margin-top: 30px;
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+
+  ion-item {
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+  }
+
+  .signup-col {
+    margin: 0px 16px 0px 16px;
+    padding-bottom: 20px;
+  }
+
+  .register-btn {
+    background: #51CFB1;
+    border-radius: 30px !important;
+    border: 1px solid #ffffff;
+  }
+
+</style>
+
+<ion-content class="register-content" padding>
+  <div class="register-box">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-label floating>Email Address</ion-label>
+            <ion-input type="text" #email>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" #password>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input type="password" #confirmPassword>
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <br/>
+
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button (click)="register()" class="register-btn">Register</button>
+        <p align="center" style="color: white">Want to Naviagate to Login Screen ?<button ion-button (click)="login()" class="register-btn">Login</button></p>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
